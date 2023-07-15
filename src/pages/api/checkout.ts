@@ -17,7 +17,7 @@ export default async function handler(
         product_data: {
           name: item.title,
           description: item.description,
-          images: [item.images[0]],
+          images: [item.image],
         },
       },
     };
@@ -34,7 +34,7 @@ export default async function handler(
     cancel_url: `${process.env.NEXTAUTH_URL}/checkout`,
     metadata: {
       email,
-      images: JSON.stringify(items.map((item: StoreProduct) => item.images[0])),
+      images: JSON.stringify(items.map((item: StoreProduct) => item.image)),
     },
   });
 

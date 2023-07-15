@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { SiMediamarkt } from "react-icons/si";
 import { useSelector } from "react-redux";
 import { useSession, signIn, signOut } from "next-auth/react";
-import Stripe from "stripe";
+
 import { loadStripe } from "@stripe/stripe-js";
 
 const CartPayment = () => {

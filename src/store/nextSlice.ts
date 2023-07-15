@@ -21,7 +21,7 @@ export const nextSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const existingProduct = state?.productData?.find(
-        (item: StoreProduct) => item.id === action.payload.id
+        (item: StoreProduct) => item._id === action.payload._id
       );
       if (existingProduct) {
         existingProduct.quantity += action.payload.quantity;
@@ -31,7 +31,7 @@ export const nextSlice = createSlice({
     },
     addToFavourite: (state, action) => {
       const existingProduct = state?.favouriteData?.find(
-        (item: StoreProduct) => item.id === action.payload.id
+        (item: StoreProduct) => item._id === action.payload._id
       );
       if (existingProduct) {
         existingProduct.quantity += action.payload.quantity;
@@ -41,13 +41,13 @@ export const nextSlice = createSlice({
     },
     increaseQuantity: (state, action) => {
       const existingProduct = state?.productData?.find(
-        (item: StoreProduct) => item.id === action.payload.id
+        (item: StoreProduct) => item._id === action.payload._id
       );
       existingProduct && existingProduct.quantity++;
     },
     descreaseQuantity: (state, action) => {
       const existingProductIndex = state.productData.findIndex(
-        (item: StoreProduct) => item.id === action.payload.id
+        (item: StoreProduct) => item._id === action.payload._id
       );
       const existingProduct = state.productData[existingProductIndex];
       if (existingProduct) {
@@ -60,8 +60,9 @@ export const nextSlice = createSlice({
     },
 
     deleteProduct: (state, action) => {
+      console.log(action.payload);
       state.productData = state.productData?.filter((item: StoreProduct) => {
-        return item.id !== action.payload?.id;
+        return item._id !== action.payload.itemId;
       });
     },
     resetCart: (state, action) => {
@@ -76,6 +77,14 @@ export const nextSlice = createSlice({
     setAllProducts: (state, action) => {
       state.allProducts = action.payload;
     },
+    deleteFavorite: (state, action) => {
+      state.favouriteData = state.favouriteData.filter(
+        (item) => item._id !== action.payload
+      );
+    },
+    resetFavoriteData: (state) => {
+      state.favouriteData = [];
+    },
   },
 });
 
@@ -89,6 +98,8 @@ export const {
   addUser,
   removeUser,
   setAllProducts,
+  deleteFavorite,
+  resetFavoriteData,
 } = nextSlice.actions;
 
 export default nextSlice.reducer;

@@ -23,7 +23,7 @@ const Cart = () => {
             <div>
               {productData.map((product: StoreProduct) => {
                 return (
-                  <div key={product.id} className="pt-2 flex flex-col gap-2 ">
+                  <div key={product._id} className="pt-2 flex flex-col gap-2 ">
                     <CartProduct item={product} />
                   </div>
                 );

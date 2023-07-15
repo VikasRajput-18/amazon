@@ -18,25 +18,26 @@ interface CartProps {
 const CartProduct = ({ item }: CartProps) => {
   const dispatch = useDispatch();
   const {
-    id,
+    _id,
     title,
     category,
     price,
-    images,
+    image,
     description,
-    creationAt,
-    updatedAt,
     quantity,
+    brand,
+    isNew,
+    oldPrice,
   } = item;
 
   const handleDelete = (itemId: number) => {
-    dispatch(deleteProduct({ id }));
+    dispatch(deleteProduct({ itemId }));
   };
 
   return (
     <div className="bg-gray-100 hover:bg-gray-200 transition-all duration-300 rounded-lg flex items-center gap-4">
       <Image
-        src={item.images[0]}
+        src={image}
         width={150}
         height={150}
         alt={item.title}
@@ -58,14 +59,15 @@ const CartProduct = ({ item }: CartProps) => {
                 onClick={() => {
                   dispatch(
                     descreaseQuantity({
-                      id,
+                      _id,
                       title,
                       category,
                       price,
-                      images,
+                      image,
                       description,
-                      creationAt,
-                      updatedAt,
+                      brand,
+                      isNew,
+                      oldPrice,
                       quantity: 1,
                     })
                   );
@@ -74,19 +76,20 @@ const CartProduct = ({ item }: CartProps) => {
               >
                 <LuMinus />
               </span>
-              <span>{item.quantity}</span>
+              <span>{quantity}</span>
               <span
                 onClick={() => {
                   dispatch(
                     increaseQuantity({
-                      id,
+                      _id,
                       title,
                       category,
                       price,
-                      images,
+                      image,
                       description,
-                      creationAt,
-                      updatedAt,
+                      brand,
+                      isNew,
+                      oldPrice,
                       quantity: 1,
                     })
                   );
@@ -97,7 +100,7 @@ const CartProduct = ({ item }: CartProps) => {
               </span>
             </div>
             <div
-              onClick={() => handleDelete(id)}
+              onClick={() => handleDelete(_id)}
               className="group cursor-pointer hover:border-gray-300 px-3 py-1 rounded-md border border-transparent flex items-center gap-2 hover:text-red-600 hover:text-lg duration-300 transition-all"
             >
               <IoMdClose />

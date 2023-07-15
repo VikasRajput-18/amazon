@@ -2,12 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-  domains: [
+    domains: [
       "fakestoreapi.com",
       "picsum.photos",
       "placeimg.com",
       "avatars.githubusercontent.com",
       "lh3.googleusercontent.com",
+      "i.ibb.co",
     ],
   },
 };
